@@ -110,7 +110,7 @@ function draw(){
  const world=worldLayout(),padX=w<500?10:22,padY=h<420?50:56,scale=Math.min((w-2*padX)/world.w,(h-2*padY)/world.h)*zoom;
  const sw=Math.max(w,Math.ceil(world.w*scale+padX*2)),sh=Math.max(h,Math.ceil(world.h*scale+padY*2));
  scene.style.width=sw+"px";scene.style.height=sh+"px";geo={};
- for(const p of Object.keys(panels)){let img=$("panel-"+p);if(!img){img=document.createElement("img");img.id="panel-"+p;img.alt=panels[p].label+" del Airbus A320";img.draggable=false;img.src="assets/"+p+".webp";scene.insertBefore(img,$("overlay"));}
+ for(const p of Object.keys(panels)){let img=$("panel-"+p);if(!img){img=document.createElement("img");img.id="panel-"+p;img.alt=panels[p].label+" del Airbus A320";img.draggable=false;img.src="./"+p+".webp";scene.insertBefore(img,$("overlay"));}
  const b=world.boxes[p];img.hidden=!b;if(!b)continue;const rect={x:(sw-world.w*scale)/2+b.x*scale,y:(sh-world.h*scale)/2+b.y*scale,w:b.w*scale,h:b.h*scale};geo[p]=rect;
  Object.assign(img.style,{left:rect.x+"px",top:rect.y+"px",width:rect.w+"px",height:rect.h+"px"});}
  $("viewTitle").textContent=view==="all"?"CABINA COMPLETA":panels[view].label.toUpperCase();$("zoomText").textContent=Math.round(zoom*100)+"%";$("minus").disabled=zoom<=1;$("plus").disabled=zoom>=16;
