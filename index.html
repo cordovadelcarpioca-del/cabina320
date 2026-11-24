@@ -22,8 +22,8 @@
 <div class="canvasTools"><button id="minus" title="Alejar" aria-label="Alejar"><i data-i="minus"></i></button><output id="zoomText">100%</output><button id="plus" title="Acercar" aria-label="Acercar"><i data-i="plus"></i></button><span></span><button id="fit" title="Ajustar panel" aria-label="Ajustar panel"><i data-i="fit"></i></button></div><div class="sceneTag"><span></span>A320</div></div>
 <div class="canvasfoot"><span id="footTip"><i data-i="pointer"></i> Haz clic en un mando para añadir un paso.</span><button id="layers" class="flat" aria-pressed="false"><i data-i="layers"></i><span>Ver ambos roles</span></button></div><div id="flowTools" class="flow-tools"><label class="curve-control">Flechas<select id="curve" aria-label="Curvatura de las flechas"><option value="0">Rectas</option><option value="0.16">Curva suave</option><option value="0.3">Curva media</option></select></label><div class="poster-buttons"><button type="button" id="pdfExport" class="btn primary"><i data-i="download"></i>Descargar PDF</button><button type="button" id="pngExport" class="btn" title="Descargar ambos roles con sus indicaciones"><i data-i="download"></i>Descargar PNG</button></div></div></section>
 <aside class="side card"><div class="sidecap"><span class="eyebrow" id="sidecap">FLUJO ACTIVO</span><button class="iconbtn" id="settings" title="Editar nombre y referencia" aria-label="Editar nombre y referencia"><i data-i="pencil"></i></button></div><h2 id="flowName"></h2><div id="refLine" class="refline"></div><div id="roleArea"></div><div id="sequence"></div><div id="sideActions"></div></aside></div>
-<footer><span><i data-i="drive"></i><span id="saveStatus">Guardado en este navegador</span></span><a href="data:text/markdown;charset=utf-8;base64,IyBDYWJpbmEgwrcgRmx1am9zIGRlbCBBMzIwCgpBYnJlIGBpbmRleC5odG1sYCBlbiB0dSBuYXZlZ2Fkb3IuIEVsIGVkaXRvciB5IGxhIHByw6FjdGljYSBmdW5jaW9uYW4gc2luIGluc3RhbGFjacOzbiB5IHNpbiBjb25leGnDs24uIEVzdGEgZWRpY2nDs24gaW5jbHV5ZSBsb3MgcmVjdXJzb3MgZW4gZWwgbWlzbW8gYXJjaGl2by4KCiMjIENyZWFyIHkgcHJhY3RpY2FyCjEuIFB1bHNhICoqTnVldm8gZmx1am8qKi4gRXNjcmliZSBlbCBub21icmUgeSBsYSBmdWVudGUgcXVlIHVzYXLDoXMgY29tbyByZWZlcmVuY2lhIChtYW51YWwsIHJldmlzacOzbiB5IHDDoWdpbmEpLgoyLiBFbGlnZSAqKlBGKiogbyAqKlBNKiosIHNlbGVjY2lvbmEgZWwgcGFuZWwgeSBoYXogY2xpYyBlbiBjYWRhIG1hbmRvIGVuIG9yZGVuLiBJbmRpY2Egc3Ugbm9tYnJlLCBzdSBhY2Npw7NuIHkgZWwgdGFtYcOxbyBkZSBzdSDDoXJlYSBkZSBhY2llcnRvLgozLiBQdWxzYSB1biBwYXNvIGRlIGxhIGxpc3RhIHBhcmEgbW9kaWZpY2FybG8sIHJldWJpY2FybG8sIGNhbWJpYXIgc3Ugb3JkZW4gbyBlbGltaW5hcmxvLiAqKlZlciBhbWJvcyByb2xlcyoqIHN1cGVycG9uZSBsYXMgZG9zIHJ1dGFzLiBFbiAqKkNvbXBsZXRhKiogcHVlZGVzIHZlciBsYXMgY29uZXhpb25lcyBlbnRyZSBwYW5lbGVzLgo0LiBQdWxzYSAqKlByYWN0aWNhciBmbHVqbyoqLCBlbGlnZSB1biByb2wgeSBtYXJjYSBsb3MgbWFuZG9zIGRlIG1lbW9yaWEuIFVzYSArIHBhcmEgYWNlcmNhciB5IGFycmFzdHJhIGxhIGltYWdlbiBwYXJhIGRlc3BsYXphcnRlLiBDb24gdGVjbGFkbywgZW5mb2NhIGxhIGNhYmluYSwgbXVldmUgbGEgbWlyYSBjb24gbGFzIGZsZWNoYXMgKE1hecO6cyBwYXJhIGF2YW56YXIgbcOhcyByw6FwaWRvKSB5IHVzYSBJbnRybyBwYXJhIG1hcmNhci4KNS4gUHVsc2EgKipDb21wYXJhciBpbnRlbnRvKiouIExvcyBjw61yY3Vsb3MgbnVtZXJhZG9zIG11ZXN0cmFuIGxhIHJlZmVyZW5jaWEgeSBsb3Mgcm9tYm9zIGF6dWxlcyB0dXMgY2xpY3MuIFB1ZWRlcyBvY3VsdGFyIGNhZGEgY2FwYSBvIHNlbGVjY2lvbmFyIHVuYSBmaWxhIHBhcmEgYWNlcmNhcnRlLiBMYSBwdW50dWFjacOzbiBjdWVudGEgZWwgbWF5b3IgbsO6bWVybyBkZSBtYW5kb3MgcXVlIHJlY29ub2Npc3RlIGVuIGVsIG9yZGVuIGNvcnJlY3RvLiBFbCBpbmZvcm1lIGlkZW50aWZpY2Egb21pc2lvbmVzLCBjbGljcyBleHRyYSB5IHBhc29zIGZ1ZXJhIGRlIG9yZGVuLiBVbmEgb21pc2nDs24gbm8gZGVzcGxhemEgZWwgcmVzdG8gZGUgbGFzIHJlc3B1ZXN0YXMuCjYuIFR1cyBmbHVqb3Mgc2UgZ3VhcmRhbiBlbiBlbCBuYXZlZ2Fkb3IuIEVuICoqTWlzIGZsdWpvcyoqIHB1ZWRlcyBpbXBvcnRhciBvIGd1YXJkYXIgdW5hIGNvcGlhIGVkaXRhYmxlIGRlIGNhZGEgdW5vIGNvbW8gSlNPTi4gRXhwb3J0YSBhbnRlcyBkZSBlbGltaW5hciBsb3MgZGF0b3MgZGVsIG5hdmVnYWRvciBvIGNhbWJpYXIgZGUgZGlzcG9zaXRpdm8uCgpMYSBkZW1vc3RyYWNpw7NuIGVzIHVuIGVqZXJjaWNpbyBkZSB1YmljYWNpw7NuLiBQYXJhIHByYWN0aWNhciBwcm9jZWRpbWllbnRvcyBlc3BlY8OtZmljb3MsIGNyZWEgbGEgcmVmZXJlbmNpYSBhIHBhcnRpciBkZWwgU09QIHZpZ2VudGUgZGUgdHUgY2VudHJvLiBFbCBlamVyY2ljaW8gZXZhbMO6YSBsYSB1YmljYWNpw7NuIHkgZWwgb3JkZW4gZGUgbGFzIHNlbGVjY2lvbmVzLiBFbCBjYW1wbyBkZSBhY2Npw7NuIHNpcnZlIGRlIHJlZmVyZW5jaWEgZW4gZWwgZWRpdG9yOyBlbCBwcm9ncmFtYSBubyBzaW11bGEgc2lzdGVtYXMgbmkgdmFsaWRhIGxhIHBvc2ljacOzbiBmw61zaWNhIGRlIHVuIGludGVycnVwdG9yLgoKCiMjIERlc2NhcmdhciBlbCBmbHVqbwpQdWxzYSBEZXNjYXJnYXIgUERGIGVuIGVsIGVkaXRvciBvIGVuIE1pcyBmbHVqb3MgcGFyYSBvYnRlbmVyIGVsIGRpYWdyYW1hIHkgbG9zIHBhc29zIGRlIFBGIHkgUE0uIERlc2NhcmdhciBQTkcgZ2VuZXJhIGxhIGltYWdlbi4gRW4gTWlzIGZsdWpvcywgQ29waWEgZWRpdGFibGUgKC5qc29uKSBwZXJtaXRlIHJlc3BhbGRhciB5IHZvbHZlciBhIGltcG9ydGFyIGVsIGZsdWpvLgo=" download="Guia_Cabina_A320.md">Guía de uso</a></footer></main>
-<dialog id="modal"><form id="dialogForm" method="dialog"><div class="modalhead"><h2 id="modalTitle"></h2><button class="iconbtn" value="cancel" formnovalidate id="closeDialog" aria-label="Cerrar" type="button"><i data-i="close"></i></button></div><div id="modalBody"></div><div class="modalActions" id="modalActions"></div></form></dialog><div id="toast" role="status" aria-live="polite" hidden></div><input type="file" id="importFile" accept=".json,application/json" hidden>
+<footer><span><i data-i="drive"></i><span id="saveStatus">Guardado en este navegador</span></span><a href="data:text/markdown;charset=utf-8;base64,IyBDYWJpbmEgwrcgRmx1am9zIGRlbCBBMzIwDQoNCkFicmUgYGluZGV4Lmh0bWxgIGVuIHR1IG5hdmVnYWRvci4gRWwgZWRpdG9yIHkgbGEgcHLDoWN0aWNhIGZ1bmNpb25hbiBzaW4gaW5zdGFsYWNpw7NuIHkgc2luIGNvbmV4acOzbi4gRXN0ZSBIVE1MIGluY2x1eWUgZWwgY8OzZGlnbyB5IGxhcyBpbcOhZ2VuZXMgbmVjZXNhcmlvcy4NCg0KIyMgQ3JlYXIgeSBwcmFjdGljYXINCjEuIFB1bHNhICoqTnVldm8gZmx1am8qKi4gRXNjcmliZSBlbCBub21icmUgeSBsYSBmdWVudGUgcXVlIHVzYXLDoXMgY29tbyByZWZlcmVuY2lhIChtYW51YWwsIHJldmlzacOzbiB5IHDDoWdpbmEpLg0KMi4gRWxpZ2UgKipQRioqIG8gKipQTSoqLCBzZWxlY2Npb25hIGVsIHBhbmVsIHkgaGF6IGNsaWMgZW4gY2FkYSBtYW5kbyBlbiBvcmRlbi4gSW5kaWNhIHN1IG5vbWJyZSwgc3UgYWNjacOzbiB5IGVsIHRhbWHDsW8gZGUgc3Ugw6FyZWEgZGUgYWNpZXJ0by4NCjMuIFB1bHNhIHVuIHBhc28gZGUgbGEgbGlzdGEgcGFyYSBtb2RpZmljYXJsbywgcmV1YmljYXJsbywgY2FtYmlhciBzdSBvcmRlbiBvIGVsaW1pbmFybG8uICoqVmVyIGFtYm9zIHJvbGVzKiogc3VwZXJwb25lIGxhcyBkb3MgcnV0YXMuIEVuICoqQ29tcGxldGEqKiBwdWVkZXMgdmVyIGxhcyBjb25leGlvbmVzIGVudHJlIHBhbmVsZXMuDQo0LiBQdWxzYSAqKlByYWN0aWNhciBmbHVqbyoqLCBlbGlnZSB1biByb2wgeSBtYXJjYSBsb3MgbWFuZG9zIGRlIG1lbW9yaWEuIFVzYSArIHBhcmEgYWNlcmNhciB5IGFycmFzdHJhIGxhIGltYWdlbiBwYXJhIGRlc3BsYXphcnRlLiBDb24gdGVjbGFkbywgZW5mb2NhIGxhIGNhYmluYSwgbXVldmUgbGEgbWlyYSBjb24gbGFzIGZsZWNoYXMgKE1hecO6cyBwYXJhIGF2YW56YXIgbcOhcyByw6FwaWRvKSB5IHVzYSBJbnRybyBwYXJhIG1hcmNhci4NCjUuIFB1bHNhICoqQ29tcGFyYXIgaW50ZW50byoqLiBMb3MgY8OtcmN1bG9zIG51bWVyYWRvcyBtdWVzdHJhbiBsYSByZWZlcmVuY2lhIHkgbG9zIHJvbWJvcyBhenVsZXMgdHVzIGNsaWNzLiBQdWVkZXMgb2N1bHRhciBjYWRhIGNhcGEgbyBzZWxlY2Npb25hciB1bmEgZmlsYSBwYXJhIGFjZXJjYXJ0ZS4gTGEgcHVudHVhY2nDs24gY3VlbnRhIGVsIG1heW9yIG7Dum1lcm8gZGUgbWFuZG9zIHF1ZSByZWNvbm9jaXN0ZSBlbiBlbCBvcmRlbiBjb3JyZWN0by4gRWwgaW5mb3JtZSBpZGVudGlmaWNhIG9taXNpb25lcywgY2xpY3MgZXh0cmEgeSBwYXNvcyBmdWVyYSBkZSBvcmRlbi4gVW5hIG9taXNpw7NuIG5vIGRlc3BsYXphIGVsIHJlc3RvIGRlIGxhcyByZXNwdWVzdGFzLg0KNi4gVHVzIGZsdWpvcyBzZSBndWFyZGFuIGVuIGVsIG5hdmVnYWRvci4gRW4gKipNaXMgZmx1am9zKiogcHVlZGVzIGRlc2NhcmdhciB0b2RvcyBqdW50b3MgbyBndWFyZGFyIGVsIGZsdWpvIGFjdHVhbCBjb21vIEpTT04uIERlc2PDoXJnYWxvcyBhbnRlcyBkZSBlbGltaW5hciBsb3MgZGF0b3MgZGVsIG5hdmVnYWRvciBvIGNhbWJpYXIgZGUgZGlzcG9zaXRpdm8uDQoNCiMjIExsZXZhciB0b2RvcyBsb3MgZmx1am9zIGEgb3RybyBuYXZlZ2Fkb3INCjEuIEVuIGVsIG5hdmVnYWRvciBvcmlnaW5hbCwgYWJyZSAqKk1pcyBmbHVqb3MqKiB5IHB1bHNhICoqRGVzY2FyZ2FyIHRvZG9zKiouIFNlIGRlc2NhcmdhcsOhIHVuIGFyY2hpdm8gYGNhYmluYTMyMC1mbHVqb3MtQUFBQS1NTS1ERC5jYWJpbmEzMjBgLg0KMi4gQWJyZSBDYWJpbmEgZW4gZWwgb3RybyBuYXZlZ2Fkb3IsIGVudHJhIGVuICoqTWlzIGZsdWpvcyoqIHkgcHVsc2EgKipTdWJpciBmbHVqb3MqKi4NCjMuIFNlbGVjY2lvbmEgZWwgYXJjaGl2byBgLmNhYmluYTMyMGAuIFRvZG9zIHN1cyBmbHVqb3MgcXVlZGFyw6FuIGNhcmdhZG9zIHkgZ3VhcmRhZG9zIGVuIGVsIG51ZXZvIG5hdmVnYWRvci4gU2UgYWJyaXLDoSBlbCBmbHVqbyBxdWUgZXN0YWJhIGFjdGl2byBhbCBkZXNjYXJnYXIgbGEgY29waWEuDQoNCkxhIGNvcGlhIGNvbnNlcnZhIGxvcyBub21icmVzLCByZWZlcmVuY2lhcywgc2VjdWVuY2lhcyBQRiB5IFBNLCBwb3NpY2lvbmVzLCDDoXJlYXMgZGUgYWNpZXJ0byB5IGN1cnZhcyBkZSBsYXMgZmxlY2hhcy4gTG9zIGZsdWpvcyBpbXBvcnRhZG9zIHNlIGHDsWFkZW4gYSBsb3MgZXhpc3RlbnRlcyBjb21vIGNvcGlhcyBpbmRlcGVuZGllbnRlczsgbm8gbG9zIHJlZW1wbGF6YW4uIFNpIHN1YmVzIGVsIG1pc21vIGFyY2hpdm8gb3RyYSB2ZXosIHNlIGHDsWFkaXLDoW4gb3RyYXMgY29waWFzLg0KDQoqKlN1YmlyIGZsdWpvcyoqIHRhbWJpw6luIGFjZXB0YSBsb3MgYXJjaGl2b3MgYC5qc29uYCBpbmRpdmlkdWFsZXMgZXhwb3J0YWRvcyBhbnRlcmlvcm1lbnRlLiAqKkZsdWpvIGFjdHVhbCAoLmpzb24pKiogbWFudGllbmUgZXNhIGRlc2NhcmdhIGluZGl2aWR1YWwuIEVsIGZvcm1hdG8gYC5jYWJpbmEzMjBgIGVzIHVuIGFyY2hpdm8gSlNPTiBpZGVudGlmaWNhZG8gY29uIGBmb3JtYXQ6ICJjYWJpbmEtYTMyMC1saWJyYXJ5ImAgeSBgdmVyc2lvbjogMWAsIGNvbiBmZWNoYSBkZSBleHBvcnRhY2nDs24sIGZsdWpvIGFjdGl2byB5IGxpc3RhIGRlIGZsdWpvcy4gTm8gaW5jbHV5ZSBsb3MgaW50ZW50b3MgZGUgcHLDoWN0aWNhLg0KDQpTZSBhY2VwdGFuIGFyY2hpdm9zIGRlIGhhc3RhIDIwIE1CLiBTaSBlbCBhcmNoaXZvIGVzdMOhIGRhw7FhZG8sIHVzYSB1bmEgdmVyc2nDs24gZGVzY29ub2NpZGEgbyBlbCBuYXZlZ2Fkb3Igbm8gcHVlZGUgZ3VhcmRhcmxvLCBzZSBtdWVzdHJhIHVuIGVycm9yIHkgbm8gc2UgYcOxYWRlIG5pbmfDum4gZmx1am8gZGUgZXNhIGltcG9ydGFjacOzbi4NCg0KTGEgZGVtb3N0cmFjacOzbiBlcyB1biBlamVyY2ljaW8gZGUgdWJpY2FjacOzbi4gUGFyYSBwcmFjdGljYXIgcHJvY2VkaW1pZW50b3MgZXNwZWPDrWZpY29zLCBjcmVhIGxhIHJlZmVyZW5jaWEgYSBwYXJ0aXIgZGVsIFNPUCB2aWdlbnRlIGRlIHR1IGNlbnRyby4gRWwgZWplcmNpY2lvIGV2YWzDumEgbGEgdWJpY2FjacOzbiB5IGVsIG9yZGVuIGRlIGxhcyBzZWxlY2Npb25lcy4gRWwgY2FtcG8gZGUgYWNjacOzbiBzaXJ2ZSBkZSByZWZlcmVuY2lhIGVuIGVsIGVkaXRvcjsgZWwgcHJvZ3JhbWEgbm8gc2ltdWxhIHNpc3RlbWFzIG5pIHZhbGlkYSBsYSBwb3NpY2nDs24gZsOtc2ljYSBkZSB1biBpbnRlcnJ1cHRvci4NCg0KIyMgR2l0SHViIFBhZ2VzDQpDb2xvY2EgYGluZGV4Lmh0bWxgIGVuIGxhIHJhw616IGRlbCByZXBvc2l0b3Jpby4gRW4gU2V0dGluZ3Mg4oaSIFBhZ2VzIHNlbGVjY2lvbmEgbGEgcHVibGljYWNpw7NuIGRlc2RlIGxhIHJhbWEgcXVlIGNvbnRpZW5lIGVsIGFyY2hpdm8geSBsYSBjYXJwZXRhIHJhw616LiBFbCBIVE1MIGVzIGF1dMOzbm9tbyB5IG5vIHJlcXVpZXJlIGRlcGVuZGVuY2lhcyBuaSBjb21waWxhY2nDs24uDQoNCiMjIENvbXByb2JhY2lvbmVzDQpDb24gTm9kZS5qcyBpbnN0YWxhZG8sIGVqZWN1dGEgYG5vZGUgLS10ZXN0YC4gTGFzIHBydWViYXMgZGUgbGFzIGNvcGlhcyBjb21wcnVlYmFuIHRhbnRvIGBlbmdpbmUuanNgIGNvbW8gZWwgbW90b3IgaW50ZWdyYWRvIGVuIGVsIEhUTUwgcHVibGljYWRvLg0KDQo=" download="Guia_Cabina_A320.md">Guía de uso</a></footer></main>
+<dialog id="modal"><form id="dialogForm" method="dialog"><div class="modalhead"><h2 id="modalTitle"></h2><button class="iconbtn" value="cancel" formnovalidate id="closeDialog" aria-label="Cerrar" type="button"><i data-i="close"></i></button></div><div id="modalBody"></div><div class="modalActions" id="modalActions"></div></form></dialog><div id="toast" role="status" aria-live="polite" hidden></div><input type="file" id="importFile" accept=".cabina320,.json,application/json" hidden>
 <script>
 /*! pdf-lib
 MIT License
@@ -99,6 +99,24 @@ const CabinaEngine = (() => {
     }
     return flow;
   }
+  const maxImportBytes=20*1024*1024;
+  function createBackup(flows,current){
+    return {format:"cabina-a320-library",version:1,exportedAt:new Date().toISOString(),current,flows};
+  }
+  function readFlowFile(doc){
+    if(!doc||doc.version!==1)throw Error("Selecciona un archivo .cabina320 o un JSON exportado desde Cabina.");
+    if(doc.format==="cabina-a320"){
+      const flow=clean(doc.flow);
+      return {flows:[flow],current:flow.id};
+    }
+    if(doc.format!=="cabina-a320-library")throw Error("Selecciona un archivo .cabina320 o un JSON exportado desde Cabina.");
+    if(!Array.isArray(doc.flows)||!doc.flows.length)throw Error("La copia no contiene flujos.");
+    // Validate the complete library before the caller changes or saves any data.
+    // Fresh IDs keep imported copies independent from flows already in this browser.
+    const flows=doc.flows.map(clean);
+    const index=typeof doc.current==="string"?doc.flows.findIndex(f=>f.id===doc.current):-1;
+    return {flows,current:flows[Math.max(0,index)].id};
+  }
   function distance(a,b){return a.panel!==b.panel?Infinity:Math.hypot(a.x-b.x,(a.y-b.y)*panels[a.panel].ratio);}
   // Match the nearest switch first. When the same control occurs twice,
   // sequence alignment can choose either occurrence without mixing nearby switches.
@@ -122,11 +140,9 @@ const CabinaEngine = (() => {
     const extra=taps.map((_,j)=>j).filter(j=>!used.has(j));
     return {rows,extra,correct:dp[0][0],total:n};
   }
-  return {panels,uid,newFlow,demo,clean,assess};
+  return {panels,uid,newFlow,demo,clean,assess,maxImportBytes,createBackup,readFlowFile};
 })();
 if(typeof module!=="undefined")module.exports=CabinaEngine;
-
-
 </script>
 <script>
 "use strict";
@@ -406,7 +422,7 @@ async function flowPDF(flow, images) {
 </script>
 <script>
 "use strict";
-const {panels,uid,newFlow,demo,clean,assess}=CabinaEngine;
+const {panels,uid,newFlow,demo,clean,assess,maxImportBytes,createBackup,readFlowFile}=CabinaEngine;
 const $=id=>document.getElementById(id), roles=["PF","PM"], colors={PF:"#a9ed72",PM:"#ffcd63"};
 const icons={route:'<circle cx="5" cy="18" r="2"/><circle cx="19" cy="6" r="2"/><path d="M7 18h5a4 4 0 0 0 0-8h-1a2 2 0 1 1 0-4h6"/>',play:'<path d="m7 4 13 8-13 8z"/>',layers:'<path d="m12 3 9 5-9 5-9-5zM3 12l9 5 9-5M3 16l9 5 9-5"/>',plane:'<path d="m21 3-6 18-3-8-9-3zM12 13l9-10"/>',scan:'<path d="M8 3H3v5m13-5h5v5M3 16v5h5m13-5v5h-5"/><circle cx="12" cy="12" r="3"/>',plus:'<path d="M12 5v14M5 12h14"/>',minus:'<path d="M5 12h14"/>',fit:'<path d="M8 3H3v5m13-5h5v5M3 16v5h5m13-5v5h-5"/>',pointer:'<path d="m5 3 14 10-7 1-3 7z"/>',pencil:'<path d="m4 15 11-11 5 5L9 20l-6 1zM13 6l5 5"/>',drive:'<path d="m5 4-3 11v5h20v-5L19 4zM2 15h20m-5 3h2"/>',download:'<path d="M12 3v12m-5-5 5 5 5-5M3 16v5h18v-5"/>',close:'<path d="m5 5 14 14M19 5 5 19"/>',book:'<path d="M3 5c4-1 6-1 9 1 3-2 5-2 9-1v14c-4-1-6-1-9 1-3-2-5-2-9-1zM12 6v14"/>',chevron:'<path d="m9 5 7 7-7 7"/>',trash:'<path d="M3 6h18M9 6V3h6v3M5 6l1 15h12l1-15M10 10v7m4-7v7"/>',undo:'<path d="M3 10h11a6 6 0 0 1 0 12M3 10l6-6m-6 6 6 6"/>',check:'<path d="m4 12 5 5L20 6"/>',target:'<circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="3"/>',list:'<path d="M8 6h13M8 12h13M8 18h13M3 6h1m-1 6h1m-1 6h1"/>',up:'<path d="m6 15 6-6 6 6"/>',down:'<path d="m6 9 6 6 6-6"/>',hint:'<path d="M9 17c0-2-3-3-3-7a6 6 0 1 1 12 0c0 4-3 5-3 7zM9 21h6"/>',edit:'<path d="M4 20h16m-13-5 9-9 3 3-9 9-4 1z"/>'};
 const icon=k=>'<svg class="ico" viewBox="0 0 24 24" aria-hidden="true">'+(icons[k]||"")+'</svg>';
@@ -423,7 +439,7 @@ if(!flows.some(f=>f.id===current))current=flows[0].id;
 const flow=()=>flows.find(f=>f.id===current),steps=()=>flow().steps[role];
 let mode="edit",role="PF",view="central",zoom=1,both=false,taps=[],report=null,showRef=true,showTaps=true,moving=null,aim=null,geo={},timer=0,suppressClick=false;
 function save(){try{localStorage.setItem(key,JSON.stringify({version:1,current,flows}));storeOK=true;}catch{storeOK=false;}savedStatus();}
-function savedStatus(){$("saveStatus").textContent=storeOK?"Guardado automático en este navegador":"Guardado local no disponible · exporta tu flujo";}
+function savedStatus(){$("saveStatus").textContent=storeOK?"Guardado automático en este navegador":"Guardado local no disponible · descarga tus flujos";}
 function toast(s){$("toast").textContent=s;$("toast").hidden=false;clearTimeout(timer);timer=setTimeout(()=>$("toast").hidden=true,3200);}
 function button(id,label,cls="btn",sym=""){return '<button type="button" class="'+cls+'" id="'+id+'">'+(sym?icon(sym):"")+esc(label)+'</button>';}
 function modal(title,body,actions,submit){
@@ -481,16 +497,40 @@ function editStep(point,index=null){
  $("removeStep").onclick=()=>question("Eliminar paso",s.name,"Eliminar",()=>{steps().splice(index,1);save();render();});
  }else $("switchName").focus();
 }
+function downloadFlowJSON(doc,filename){
+ const blob=new Blob([JSON.stringify(doc,null,2)],{type:"application/json"});
+ const url=URL.createObjectURL(blob),a=document.createElement("a");
+ a.href=url;a.download=filename;document.body.appendChild(a);a.click();a.remove();
+ setTimeout(()=>URL.revokeObjectURL(url),2000);
+}
 function library(){
- const body='<div>'+flows.map((f,i)=>'<div class="flowItem"><button type="button" data-load="'+i+'"><b>'+esc(f.name)+'</b><small>'+f.steps.PF.length+' PF · '+f.steps.PM.length+' PM</small></button><button type="button" class="iconbtn" aria-label="Eliminar flujo" data-del="'+i+'">'+icon("trash")+'</button></div>').join("")+'</div><p class="note" style="margin-top:14px">Tus flujos se guardan automáticamente en este navegador, incluso después de cerrarlo. Exporta un JSON para llevar un flujo a otro dispositivo.</p>';
- modal("Mis flujos",body,button("import","Importar JSON")+button("export","Copia editable (.json)","btn")+button("vaultPDF","Descargar PDF","btn primary","download"));
+ const body='<div>'+flows.map((f,i)=>'<div class="flowItem"><button type="button" data-load="'+i+'"><b>'+esc(f.name)+'</b><small>'+f.steps.PF.length+' PF · '+f.steps.PM.length+' PM</small></button><button type="button" class="iconbtn" aria-label="Eliminar flujo" data-del="'+i+'">'+icon("trash")+'</button></div>').join("")+'</div><p class="note" style="margin-top:14px">Descarga todos tus flujos en un archivo .cabina320. En otro navegador, abre Mis flujos y pulsa Subir flujos: se añadirán todos, con sus pasos PF y PM, sin borrar los existentes. También puedes subir los JSON de flujos individuales.</p><p id="importStatus" class="note notice" role="alert" hidden></p>';
+ modal("Mis flujos",body,button("import","Subir flujos")+button("exportAll","Descargar todos","btn primary","download")+button("export","Flujo actual (.json)")+button("vaultPDF","Descargar PDF","btn","download"));
  $("modalBody").querySelectorAll("[data-load]").forEach(b=>b.onclick=()=>{current=flows[+b.dataset.load].id;mode="edit";moving=null;close();save();render();});
  $("modalBody").querySelectorAll("[data-del]").forEach(b=>b.onclick=()=>{const i=+b.dataset.del;question("Eliminar flujo",flows[i].name,"Eliminar",()=>{flows.splice(i,1);if(!flows.length)flows.push(newFlow("Mi flujo A320"));if(!flows.some(f=>f.id===current))current=flows[0].id;mode="edit";save();render();library();});});
  $("vaultPDF").disabled=!roles.some(r=>flow().steps[r].length);
  $("vaultPDF").onclick=e=>downloadFlowFile("pdf",e.currentTarget);
- $("import").onclick=()=>$("importFile").click();$("export").onclick=()=>{const blob=new Blob([JSON.stringify({format:"cabina-a320",version:1,flow:flow()},null,2)],{type:"application/json"});const u=URL.createObjectURL(blob),a=document.createElement("a");a.href=u;a.download=(flow().name.replace(/[^a-z0-9áéíóúñ_-]+/gi,"-")||"flujo")+".json";a.click();setTimeout(()=>URL.revokeObjectURL(u),2000);};
+ $("import").onclick=()=>$("importFile").click();
+ $("exportAll").onclick=()=>downloadFlowJSON(createBackup(flows,current),"cabina320-flujos-"+new Date().toISOString().slice(0,10)+".cabina320");
+ $("export").onclick=()=>downloadFlowJSON({format:"cabina-a320",version:1,flow:flow()},(flow().name.replace(/[^a-z0-9áéíóúñ_-]+/gi,"-")||"flujo")+".json");
 }
-$("importFile").onchange=async e=>{const file=e.target.files[0];e.target.value="";if(!file)return;try{if(file.size>1000000)throw Error("El archivo supera 1 MB.");const doc=JSON.parse(await file.text());if(doc.format!=="cabina-a320"||doc.version!==1)throw Error("Selecciona un JSON exportado desde Cabina.");const f=clean(doc.flow);flows.push(f);current=f.id;mode="edit";moving=null;close();save();render();toast("Flujo importado.");}catch(err){toast(err.message||"No se pudo importar el flujo.");}};
+$("importFile").onchange=async e=>{
+ const file=e.target.files[0];e.target.value="";if(!file)return;
+ const status=$("importStatus");if(status)status.hidden=true;
+ try{
+  if(file.size>maxImportBytes)throw Error("El archivo supera 20 MB.");
+  const imported=readFlowFile(JSON.parse(await file.text()));
+  const combined=flows.concat(imported.flows);
+  try{localStorage.setItem(key,JSON.stringify({version:1,current:imported.current,flows:combined}));}
+  catch{throw Error("No se pudieron guardar los flujos en este navegador. Libera espacio o permite el almacenamiento local y vuelve a intentarlo.");}
+  flows=combined;current=imported.current;storeOK=true;
+  mode="edit";role="PF";moving=null;aim=null;taps=[];report=null;
+  close();render();toast(imported.flows.length===1?"Flujo importado y guardado.":imported.flows.length+" flujos importados y guardados.");
+ }catch(err){
+  const message=err instanceof SyntaxError?"El archivo no contiene una copia válida de Cabina.":err.message||"No se pudieron importar los flujos.";
+  if(status&&status.isConnected){status.textContent=message;status.hidden=false;}else toast(message);
+ }
+};
 function guard(fn){if(mode==="practice"&&taps.length)question("Salir de la práctica","Se descartará este intento.","Salir",fn);else fn();}
 function begin(){
  const options=roles.filter(r=>flow().steps[r].length);if(!options.length){toast("Añade al menos un paso para practicar.");return;}
