@@ -1,5 +1,5 @@
 "use strict";
-const {panels,uid,newFlow,demo,clean,assess}=CabinaEngine;
+const {panels,uid,newFlow,demo,clean,assess,maxImportBytes,createBackup,readFlowFile}=CabinaEngine;
 const $=id=>document.getElementById(id), roles=["PF","PM"], colors={PF:"#a9ed72",PM:"#ffcd63"};
 const icons={route:'<circle cx="5" cy="18" r="2"/><circle cx="19" cy="6" r="2"/><path d="M7 18h5a4 4 0 0 0 0-8h-1a2 2 0 1 1 0-4h6"/>',play:'<path d="m7 4 13 8-13 8z"/>',layers:'<path d="m12 3 9 5-9 5-9-5zM3 12l9 5 9-5M3 16l9 5 9-5"/>',plane:'<path d="m21 3-6 18-3-8-9-3zM12 13l9-10"/>',scan:'<path d="M8 3H3v5m13-5h5v5M3 16v5h5m13-5v5h-5"/><circle cx="12" cy="12" r="3"/>',plus:'<path d="M12 5v14M5 12h14"/>',minus:'<path d="M5 12h14"/>',fit:'<path d="M8 3H3v5m13-5h5v5M3 16v5h5m13-5v5h-5"/>',pointer:'<path d="m5 3 14 10-7 1-3 7z"/>',pencil:'<path d="m4 15 11-11 5 5L9 20l-6 1zM13 6l5 5"/>',drive:'<path d="m5 4-3 11v5h20v-5L19 4zM2 15h20m-5 3h2"/>',download:'<path d="M12 3v12m-5-5 5 5 5-5M3 16v5h18v-5"/>',close:'<path d="m5 5 14 14M19 5 5 19"/>',book:'<path d="M3 5c4-1 6-1 9 1 3-2 5-2 9-1v14c-4-1-6-1-9 1-3-2-5-2-9-1zM12 6v14"/>',chevron:'<path d="m9 5 7 7-7 7"/>',trash:'<path d="M3 6h18M9 6V3h6v3M5 6l1 15h12l1-15M10 10v7m4-7v7"/>',undo:'<path d="M3 10h11a6 6 0 0 1 0 12M3 10l6-6m-6 6 6 6"/>',check:'<path d="m4 12 5 5L20 6"/>',target:'<circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="3"/>',list:'<path d="M8 6h13M8 12h13M8 18h13M3 6h1m-1 6h1m-1 6h1"/>',up:'<path d="m6 15 6-6 6 6"/>',down:'<path d="m6 9 6 6 6-6"/>',hint:'<path d="M9 17c0-2-3-3-3-7a6 6 0 1 1 12 0c0 4-3 5-3 7zM9 21h6"/>',edit:'<path d="M4 20h16m-13-5 9-9 3 3-9 9-4 1z"/>'};
 const icon=k=>'<svg class="ico" viewBox="0 0 24 24" aria-hidden="true">'+(icons[k]||"")+'</svg>';
@@ -16,7 +16,7 @@ if(!flows.some(f=>f.id===current))current=flows[0].id;
 const flow=()=>flows.find(f=>f.id===current),steps=()=>flow().steps[role];
 let mode="edit",role="PF",view="central",zoom=1,both=false,taps=[],report=null,showRef=true,showTaps=true,moving=null,aim=null,geo={},timer=0,suppressClick=false;
 function save(){try{localStorage.setItem(key,JSON.stringify({version:1,current,flows}));storeOK=true;}catch{storeOK=false;}savedStatus();}
-function savedStatus(){$("saveStatus").textContent=storeOK?"Guardado en este navegador":"Guardado local no disponible · exporta tu flujo";}
+function savedStatus(){$("saveStatus").textContent=storeOK?"Guardado en este navegador":"Guardado local no disponible · descarga tus flujos";}
 function toast(s){$("toast").textContent=s;$("toast").hidden=false;clearTimeout(timer);timer=setTimeout(()=>$("toast").hidden=true,3200);}
 function button(id,label,cls="btn",sym=""){return '<button type="button" class="'+cls+'" id="'+id+'">'+(sym?icon(sym):"")+esc(label)+'</button>';}
 function modal(title,body,actions,submit){
@@ -52,14 +52,38 @@ function editStep(point,index=null){
  $("removeStep").onclick=()=>question("Eliminar paso",s.name,"Eliminar",()=>{steps().splice(index,1);save();render();});
  }else $("switchName").focus();
 }
+function downloadFlowJSON(doc,filename){
+ const blob=new Blob([JSON.stringify(doc,null,2)],{type:"application/json"});
+ const url=URL.createObjectURL(blob),a=document.createElement("a");
+ a.href=url;a.download=filename;document.body.appendChild(a);a.click();a.remove();
+ setTimeout(()=>URL.revokeObjectURL(url),2000);
+}
 function library(){
- const body='<div>'+flows.map((f,i)=>'<div class="flowItem"><button type="button" data-load="'+i+'"><b>'+esc(f.name)+'</b><small>'+f.steps.PF.length+' PF · '+f.steps.PM.length+' PM</small></button><button type="button" class="iconbtn" aria-label="Eliminar flujo" data-del="'+i+'">'+icon("trash")+'</button></div>').join("")+'</div><p class="note" style="margin-top:14px">Exporta un flujo para hacer una copia o practicarlo en otro dispositivo.</p>';
- modal("Mis flujos",body,button("import","Importar JSON")+button("export","Exportar flujo actual","btn","download"));
+ const body='<div>'+flows.map((f,i)=>'<div class="flowItem"><button type="button" data-load="'+i+'"><b>'+esc(f.name)+'</b><small>'+f.steps.PF.length+' PF · '+f.steps.PM.length+' PM</small></button><button type="button" class="iconbtn" aria-label="Eliminar flujo" data-del="'+i+'">'+icon("trash")+'</button></div>').join("")+'</div><p class="note" style="margin-top:14px">Descarga todos tus flujos en un archivo .cabina320. En otro navegador, abre Mis flujos y pulsa Subir flujos: se añadirán todos, con sus pasos PF y PM, sin borrar los existentes. También puedes subir los JSON de flujos individuales.</p><p id="importStatus" class="note notice" role="alert" hidden></p>';
+ modal("Mis flujos",body,button("import","Subir flujos")+button("exportAll","Descargar todos","btn primary","download")+button("export","Flujo actual (.json)"));
  $("modalBody").querySelectorAll("[data-load]").forEach(b=>b.onclick=()=>{current=flows[+b.dataset.load].id;mode="edit";moving=null;close();save();render();});
  $("modalBody").querySelectorAll("[data-del]").forEach(b=>b.onclick=()=>{const i=+b.dataset.del;question("Eliminar flujo",flows[i].name,"Eliminar",()=>{flows.splice(i,1);if(!flows.length)flows.push(newFlow("Mi flujo A320"));if(!flows.some(f=>f.id===current))current=flows[0].id;mode="edit";save();render();library();});});
- $("import").onclick=()=>$("importFile").click();$("export").onclick=()=>{const blob=new Blob([JSON.stringify({format:"cabina-a320",version:1,flow:flow()},null,2)],{type:"application/json"});const u=URL.createObjectURL(blob),a=document.createElement("a");a.href=u;a.download=(flow().name.replace(/[^a-z0-9áéíóúñ_-]+/gi,"-")||"flujo")+".json";a.click();setTimeout(()=>URL.revokeObjectURL(u),2000);};
+ $("import").onclick=()=>$("importFile").click();
+ $("exportAll").onclick=()=>downloadFlowJSON(createBackup(flows,current),"cabina320-flujos-"+new Date().toISOString().slice(0,10)+".cabina320");
+ $("export").onclick=()=>downloadFlowJSON({format:"cabina-a320",version:1,flow:flow()},(flow().name.replace(/[^a-z0-9áéíóúñ_-]+/gi,"-")||"flujo")+".json");
 }
-$("importFile").onchange=async e=>{const file=e.target.files[0];e.target.value="";if(!file)return;try{if(file.size>1000000)throw Error("El archivo supera 1 MB.");const doc=JSON.parse(await file.text());if(doc.format!=="cabina-a320"||doc.version!==1)throw Error("Selecciona un JSON exportado desde Cabina.");const f=clean(doc.flow);flows.push(f);current=f.id;mode="edit";moving=null;close();save();render();toast("Flujo importado.");}catch(err){toast(err.message||"No se pudo importar el flujo.");}};
+$("importFile").onchange=async e=>{
+ const file=e.target.files[0];e.target.value="";if(!file)return;
+ const status=$("importStatus");if(status)status.hidden=true;
+ try{
+  if(file.size>maxImportBytes)throw Error("El archivo supera 20 MB.");
+  const imported=readFlowFile(JSON.parse(await file.text()));
+  const combined=flows.concat(imported.flows);
+  try{localStorage.setItem(key,JSON.stringify({version:1,current:imported.current,flows:combined}));}
+  catch{throw Error("No se pudieron guardar los flujos en este navegador. Libera espacio o permite el almacenamiento local y vuelve a intentarlo.");}
+  flows=combined;current=imported.current;storeOK=true;
+  mode="edit";role="PF";moving=null;aim=null;taps=[];report=null;
+  close();render();toast(imported.flows.length===1?"Flujo importado y guardado.":imported.flows.length+" flujos importados y guardados.");
+ }catch(err){
+  const message=err instanceof SyntaxError?"El archivo no contiene una copia válida de Cabina.":err.message||"No se pudieron importar los flujos.";
+  if(status&&status.isConnected){status.textContent=message;status.hidden=false;}else toast(message);
+ }
+};
 function guard(fn){if(mode==="practice"&&taps.length)question("Salir de la práctica","Se descartará este intento.","Salir",fn);else fn();}
 function begin(){
  const options=roles.filter(r=>flow().steps[r].length);if(!options.length){toast("Añade al menos un paso para practicar.");return;}

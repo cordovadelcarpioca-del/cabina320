@@ -2,7 +2,7 @@
 const CabinaEngine = (() => {
   const panels = {overhead:{label:"Overhead",ratio:3281/1700},central:{label:"Panel central",ratio:1277/3840},pedestal:{label:"Pedestal",ratio:2820/1700}};
   const uid = () => globalThis.crypto?.randomUUID?.() || Date.now().toString(36)+Math.random().toString(36).slice(2);
-  const newFlow = (name,source="") => ({id:uid(),name,source,steps:{PF:[],PM:[]}});
+  const newFlow = (name,source="") => ({id:uid(),name,source,curve:.16,steps:{PF:[],PM:[]}});
   const demo = () => {
     const f=newFlow("Reconocimiento del panel","Ejercicio de ubicación · sin SOP");
     function add(role,name,x,y,action) { f.steps[role].push({id:uid(),panel:"central",name,x,y,action,radius:.031}); }
@@ -16,14 +16,33 @@ const CabinaEngine = (() => {
   function clean(raw) {
     if(!raw || !text(raw.name,100)||!raw.name.trim()||!text(raw.source??"",250)) throw Error("Nombre o referencia no válidos.");
     const flow=newFlow(raw.name.trim(),raw.source||"");
+    if(inRange(raw.curve,0,.36))flow.curve=raw.curve;
     for(const role of ["PF","PM"]) {
       const steps=raw.steps?.[role]; if(!Array.isArray(steps)||steps.length>250)throw Error("La secuencia contiene pasos no válidos.");
       for(const s of steps){
         if(!s||!Object.hasOwn(panels,s.panel)||!text(s.name,100)||!s.name.trim()||!text(s.action??"",160)||!inRange(s.x,0,1)||!inRange(s.y,0,1)||!inRange(s.radius,.001,.1))throw Error("Hay un paso con datos no válidos.");
-        flow.steps[role].push({id:uid(),panel:s.panel,name:s.name.trim(),action:s.action||"",x:s.x,y:s.y,radius:s.radius});
+        flow.steps[role].push({id:uid(),panel:s.panel,name:s.name.trim(),action:s.action||"",x:s.x,y:s.y,radius:s.radius,...(inRange(s.bend,-.36,.36)?{bend:s.bend}:{})});
       }
     }
     return flow;
+  }
+  const maxImportBytes=20*1024*1024;
+  function createBackup(flows,current){
+    return {format:"cabina-a320-library",version:1,exportedAt:new Date().toISOString(),current,flows};
+  }
+  function readFlowFile(doc){
+    if(!doc||doc.version!==1)throw Error("Selecciona un archivo .cabina320 o un JSON exportado desde Cabina.");
+    if(doc.format==="cabina-a320"){
+      const flow=clean(doc.flow);
+      return {flows:[flow],current:flow.id};
+    }
+    if(doc.format!=="cabina-a320-library")throw Error("Selecciona un archivo .cabina320 o un JSON exportado desde Cabina.");
+    if(!Array.isArray(doc.flows)||!doc.flows.length)throw Error("La copia no contiene flujos.");
+    // Validate the complete library before the caller changes or saves any data.
+    // Fresh IDs keep imported copies independent from flows already in this browser.
+    const flows=doc.flows.map(clean);
+    const index=typeof doc.current==="string"?doc.flows.findIndex(f=>f.id===doc.current):-1;
+    return {flows,current:flows[Math.max(0,index)].id};
   }
   function distance(a,b){return a.panel!==b.panel?Infinity:Math.hypot(a.x-b.x,(a.y-b.y)*panels[a.panel].ratio);}
   // Match the nearest switch first. When the same control occurs twice,
@@ -48,7 +67,7 @@ const CabinaEngine = (() => {
     const extra=taps.map((_,j)=>j).filter(j=>!used.has(j));
     return {rows,extra,correct:dp[0][0],total:n};
   }
-  return {panels,uid,newFlow,demo,clean,assess};
+  return {panels,uid,newFlow,demo,clean,assess,maxImportBytes,createBackup,readFlowFile};
 })();
 if(typeof module!=="undefined")module.exports=CabinaEngine;
 
